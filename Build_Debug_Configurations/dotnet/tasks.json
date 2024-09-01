@@ -2,6 +2,32 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
+			"label": "Format All C# Files",
+			"type": "shell",
+			"command": "dotnet",
+			"args": [
+				"format"
+			],
+			"problemMatcher": []
+			//Need to install dotnet-format for the same ( dotnet tool install -g dotnet-format )
+		},
+		{
+			"label": "Format All Files",
+			"type": "shell",
+			"command": "prettier",
+			"args": [
+			  "--write",
+			  "**/*.js",
+			  "**/*.ts",
+			  "**/*.css",
+			  "**/*.html",
+			  "**/*.json",
+			  "**/*.xml"
+			],
+			"problemMatcher": []
+			//Need to install prettier for the same ( npm install -g prettier )
+		},
+		{
 			"label": "custom: build Debug x64",
 			"command": "dotnet",
 			"type": "process",
