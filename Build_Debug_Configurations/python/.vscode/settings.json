@@ -1,4 +1,5 @@
 {
     "python.analysis.typeCheckingMode": "basic",
-    "pyPath": "${workspaceFolder}/conda/.venv"
+    "pyPath": "${workspaceFolder}/conda/.venv",
+    "indexUrl": "https://pypi.org/simple"
 }
