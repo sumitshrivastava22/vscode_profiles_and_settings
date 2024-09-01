@@ -1,0 +1,14 @@
+.idea/
+__pycache__/
+build/
+dist/
+.venv/
+chromedriver/chromedriver.exe
+chromedriver/LICENSE.chromedriver
+chromedriver/THIRD_PARTY_NOTICES.chromedriver
+Inputs/input.csv
+Inputs/isin_url_mapping_mc.csv
+Outputs/results.csv
+Main.spec
+Inputs/input.csv
+Inputs/isin_url_mapping_mc.csv
