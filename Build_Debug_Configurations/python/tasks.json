@@ -1,0 +1,133 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  
+  "tasks": [
+    {
+      "label": "package",
+      "type": "shell",
+      "command": "${workspaceFolder}/conda/.venv/Scripts/pyinstaller",
+      "args": [
+        "--onefile",
+        "--add-data",
+        ".venv/Lib/site-packages/selenium_stealth/js/*.*:selenium_stealth/js",
+        "Main.py"
+      ],
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "detail": "Build and package the project as exe"
+    },
+    {
+      "label": "Create venv using python",
+      "type": "shell",
+      "command": "python",
+      "args": [
+        "-m",
+        "venv",
+        "${config:pyPath}"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [],
+      "detail": "Create a virtual environment"
+    },
+    {
+      "label": "Create Conda venv",
+      "type": "shell",
+      "command": "conda",
+      "args": [
+        "create",
+        "--prefix",
+        "${config:pyPath}",
+        "python=3.12.3",  // Replace with the desired Python version
+        "-y"
+      ],
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "detail": "Create a Miniconda virtual environment in the .venv folder"
+    },
+    {
+      "label": "Install dependencies (conda)",
+      "type": "shell",
+      "command": "${config:pyPath}/python",
+      "args": [  
+        "-m",      
+        "pip",
+        "install",
+        "-r",
+        "requirements.txt",        
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [],
+      "detail": "Install dependencies"
+    },
+    {
+      "label": "Install dependencies",
+      "type": "shell",
+      "command": "${config:pyPath}/Script/python",
+      "args": [  
+        "-m",      
+        "pip",
+        "install",
+        "-r",
+        "requirements.txt"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [],
+      "detail": "Install Python dependencies"
+    },
+    {
+      "label": "Create Virtual Env and install dependencies",
+      "type": "shell",
+      "command": "${config:pyPath}/Scripts/python",
+      "args": [  
+        "-m",      
+        "pip",
+        "install",
+        "-r",
+        "requirements.txt"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "dependsOn": "Create venv using python",
+      "problemMatcher": [],
+      "detail": "Create virtual environment and Install dependencies"
+    },
+    {
+      "label": "Create conda (.venv) and install dependencies",
+      "type": "shell",
+      "command": "${config:pyPath}/python",
+      "args": [
+        "-m",
+        "pip",
+        "install",
+        "-r",
+        "requirements.txt"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "dependsOn": "Create Conda venv",
+      "problemMatcher": [],
+      "detail": "Create conda environment and Install dependencies"
+    }
+  ]
+}
