@@ -10,6 +10,7 @@
     }
   ],
   "tasks": [
+    //package task
     {
       "label": "package",
       "type": "shell",
@@ -27,6 +28,8 @@
       },
       "detail": "Build and package the project as exe"
     },
+
+    //Create venv using python
     {
       "label": "Create venv using python",
       "type": "shell",
@@ -43,6 +46,8 @@
       "problemMatcher": [],
       "detail": "Create a virtual environment"
     },
+
+    //Create venv using conda
     {
       "label": "Create Conda venv",
       "type": "shell",
@@ -61,8 +66,10 @@
       },
       "detail": "Create a Miniconda virtual environment in the .venv folder"
     },
+
+    //install dependencies
     {
-      "label": "Install dependencies (conda)",
+      "label": "Install dependencies",
       "type": "shell",
       "command": "${config:pyPath}/python",
       "args": [  
@@ -70,7 +77,11 @@
         "pip",
         "install",
         "-r",
-        "requirements.txt",        
+        "requirements.txt",   
+        "--index-url",
+        "${config:indexUrl}",
+        "--trusted-host",
+        "${config:trustedHost}"     
       ],
       "group": {
         "kind": "build",
@@ -79,62 +90,8 @@
       "problemMatcher": [],
       "detail": "Install dependencies"
     },
-    {
-      "label": "Install dependencies",
-      "type": "shell",
-      "command": "${config:pyPath}/Script/python",
-      "args": [  
-        "-m",      
-        "pip",
-        "install",
-        "-r",
-        "requirements.txt"
-      ],
-      "group": {
-        "kind": "build",
-        "isDefault": true
-      },
-      "problemMatcher": [],
-      "detail": "Install Python dependencies"
-    },
-    {
-      "label": "Create Virtual Env and install dependencies",
-      "type": "shell",
-      "command": "${config:pyPath}/Scripts/python",
-      "args": [  
-        "-m",      
-        "pip",
-        "install",
-        "-r",
-        "requirements.txt"
-      ],
-      "group": {
-        "kind": "build",
-        "isDefault": true
-      },
-      "dependsOn": "Create venv using python",
-      "problemMatcher": [],
-      "detail": "Create virtual environment and Install dependencies"
-    },
-    {
-      "label": "Create conda (.venv) and install dependencies",
-      "type": "shell",
-      "command": "${config:pyPath}/python",
-      "args": [
-        "-m",
-        "pip",
-        "install",
-        "-r",
-        "requirements.txt"
-      ],
-      "group": {
-        "kind": "build",
-        "isDefault": true
-      },
-      "dependsOn": "Create Conda venv",
-      "problemMatcher": [],
-      "detail": "Create conda environment and Install dependencies"
-    },
+    
+    //Install and Uninstall package
     {
       "label": "Install pacakge",
       "type": "shell",
